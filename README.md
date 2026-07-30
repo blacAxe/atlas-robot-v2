@@ -292,6 +292,15 @@ Read forward ultrasonic distance
 
 ---
 
+## 🎥 Atlas Driving Demo
+
+Atlas autonomously detects obstacles, scans its surroundings, selects a safe path, and continues navigating in real time.
+
+![Atlas Demo](docs/atlas_demo.gif)
+
+**Full HD video:** [▶ Atlas Driving Demo](docs/atlas_driving.mp4)
+
+---
 # Atlas Hardware Preview
 
 ## Front View

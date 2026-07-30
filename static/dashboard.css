@@ -408,9 +408,7 @@ select, input {
 }
 
 
-/* --------------------------------------------------------------------------
-   Stage 2.4 mobile layout
-   -------------------------------------------------------------------------- */
+/* --- Stage 2.4 mobile layout --- */
 
 html {
   -webkit-text-size-adjust: 100%;
@@ -425,7 +423,7 @@ body {
 button,
 select,
 input {
-  font-size: 16px; /* Prevents iPhone Safari from zooming into form controls. */
+  font-size: 16px; 
 }
 
 button {

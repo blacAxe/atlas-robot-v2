@@ -1,6 +1,14 @@
 from __future__ import annotations
 
 import asyncio
+
+import socket
+
+ROS_IP = "172.24.47.135"   # replace with your hostname -I output
+ROS_PORT = 5005
+
+ros_socket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+
 from collections import deque
 from contextlib import asynccontextmanager
 from datetime import datetime
@@ -113,6 +121,17 @@ def on_udp_status(status: dict[str, Any]) -> None:
 
 def on_transport_line(line: str) -> None:
     parsed = parser.parse(line)
+
+    import json
+
+    try:
+        ros_socket.sendto(
+            json.dumps(parsed).encode(),
+            (ROS_IP, ROS_PORT)
+        )
+    except Exception:
+        pass
+
     metrics.update(parsed)
     run_manager.record(line, parsed)
     if parsed.get("type") != "blank":

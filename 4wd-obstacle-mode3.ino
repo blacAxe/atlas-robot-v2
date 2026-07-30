@@ -2,7 +2,7 @@
 #include <WiFiS3.h>
 #include "arduino_secrets.h"
 
-IPAddress laptopIP(192, 168, 1, 147);
+IPAddress laptopIP(192, 168, 0, 147);
 
 const unsigned int ATLAS_UDP_DESTINATION_PORT = 4210;
 const unsigned int ATLAS_UDP_LOCAL_PORT = 4211;
@@ -215,6 +215,10 @@ const int MOTOR_SPEED = 125;
 const int TURN_SPEED = 120;
 const int CAUTIOUS_SPEED = 120;
 
+// slowest speed before stopping
+const int MIN_DRIVE_SPEED = 60;     
+const float SLOW_START_CM = 80.0;    
+
 const int WING_INNER_SPEED = 95;
 const unsigned long WING_CORRECTION_MS = 110;
 
@@ -247,8 +251,8 @@ const unsigned long BACK_CHECK_INTERVAL_MS = 35;
 
 // Turn settings
 
-const unsigned long BASE_TURN_TIME_MS = 350;
-const unsigned long EXTRA_TURN_TIME_MS = 180;
+const unsigned long BASE_TURN_TIME_MS = 410;
+const unsigned long EXTRA_TURN_TIME_MS = 220;
 const int MAX_TURN_EXTENSIONS = 5;
 
 // IR debounce settings
@@ -509,6 +513,29 @@ void maintainManualSafety() {
   }
 }
 
+int calculateDriveSpeed(float distance) {
+
+  if (distance < 0) {
+    return CAUTIOUS_SPEED;
+  }
+
+  if (distance >= SLOW_START_CM) {
+    return MOTOR_SPEED;
+  }
+
+  if (distance <= OBSTACLE_CM) {
+    return MIN_DRIVE_SPEED;
+  }
+
+  return map(
+    (int)distance,
+    (int)OBSTACLE_CM,
+    (int)SLOW_START_CM,
+    MIN_DRIVE_SPEED,
+    MOTOR_SPEED
+  );
+}
+
 // Setup
 
 void setup() {
@@ -642,7 +669,12 @@ void loop() {
     return;
   }
 
-  forward();
+  int driveSpeed = calculateDriveSpeed(frontDistance);
+
+  AtlasOut.print(F("Drive speed: "));
+  AtlasOut.println(driveSpeed);
+
+  forward(driveSpeed);
   delay(100);
 }
 
