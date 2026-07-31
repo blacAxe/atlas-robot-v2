@@ -1,3 +1,13 @@
+## 🎥 Atlas Driving Demo
+
+Atlas autonomously detects obstacles, scans its surroundings, selects a safe path, and continues navigating in real time.
+
+![Atlas Demo](docs/atlas_demo.gif)
+
+**Full HD video:** [▶ Atlas Driving Demo](docs/atlas_driving.mp4)
+
+---
+
 # Atlas Robot v1
 
 A physical robotics engineering workspace focused on autonomous obstacle avoidance, embedded control, sensor fusion, telemetry, debugging, and incremental robot intelligence.
@@ -292,15 +302,6 @@ Read forward ultrasonic distance
 
 ---
 
-## 🎥 Atlas Driving Demo
-
-Atlas autonomously detects obstacles, scans its surroundings, selects a safe path, and continues navigating in real time.
-
-![Atlas Demo](docs/atlas_demo.gif)
-
-**Full HD video:** [▶ Atlas Driving Demo](docs/atlas_driving.mp4)
-
----
 # Atlas Hardware Preview
 
 ## Front View
