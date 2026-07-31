@@ -2,7 +2,7 @@
 
 Atlas autonomously detects obstacles, scans its surroundings, selects a safe path, and continues navigating in real time.
 
-![Atlas Demo](docs/atlas_demo2.gif)
+![Atlas Demo](docs/atlas_demo3.gif)
 
 **Full HD video:** [▶ Atlas Driving Demo](docs/atlas_driving1.mp4)
 
